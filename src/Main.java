@@ -1,33 +1,25 @@
-import model.ListaTarefa;
-import model.Tarefa;
+import model.livro.Livro;
+import service.LivroService;
+import service.TarefaService;
 
-// Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
-// then press Enter. You can now see whitespace characters in your code.
+import java.time.LocalDate;
+
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Hello and welcome!\n\n");
+        System.out.println("Gerenciador de livros e tarefas!\n");
 
-        executarCadastroDuasTarefasListarPrimeiraTarefaEExcluir();
+        //TarefaService tarefaService = new TarefaService();
+        //tarefaService.executarCadastroDuasTarefasListarPrimeiraTarefaEExcluir();
+
+        LivroService livroService = new LivroService();
+        livroService.cadastrarLivro("As Fantasias Eletivas", "Carlos Henrique Schroeder", "Harper Collins", LocalDate.of(2021, 7,19));
+        livroService.cadastrarLivro("1808", "Laurentino Gomes", "Objetivo", LocalDate.of(1997, 5,22));
+        livroService.cadastrarLivro("Dentro da Baleia e Outros Contos", "George Orwell", "Principis", LocalDate.of(2021, 10,19));
+        livroService.cadastrarLivro("Um Pouco de Ar, Por Favor", "George Orwell", "Principis", LocalDate.of(2019, 3,22));
+
+        livroService.listarPorAutor("George Orwell");
+        livroService.listarTodosOrdenadoAutor();
     }
 
-    public static void executarCadastroDuasTarefasListarPrimeiraTarefaEExcluir() {
-        ListaTarefa tarefas = new ListaTarefa();
-        Tarefa tarefa1 = tarefas.adicionarTarefa("- Ir ao mercado \n- Lavar louça \n- Estudar Java");
-        Tarefa tarefa2 = tarefas.adicionarTarefa("- Estudar Python e IA \n- Ir à academia");
 
-        System.out.println("Listando tarefa #" + tarefa1.getId());
-        Tarefa tarefaPorId = tarefas.listarTarefaPorId(tarefa1.getId()).get();
-        if (tarefaPorId != null) {
-            System.out.println("Tarefa #" + tarefaPorId.getId() + " listada com sucesso. \nDescrição: \n" + tarefaPorId.getDescricao());
-            System.out.println("\n\nExcluindo tarefa #" + tarefa1.getId());
-            tarefas.removerTarefaPorId(tarefaPorId.getId());
-            if(tarefas.listarTarefaPorId(tarefa1.getId()).isEmpty()) {
-                System.out.println("Tarefa #" + tarefa1.getId() + " excluída com sucesso.");
-            }
-        } else {
-            System.out.println("Tarefa inexistente.");
-        }
-
-        
-    }
 }
