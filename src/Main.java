@@ -1,17 +1,33 @@
+import model.ListaTarefa;
+import model.Tarefa;
+
 // Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
 // then press Enter. You can now see whitespace characters in your code.
 public class Main {
     public static void main(String[] args) {
-        // Press Alt+Enter with your caret at the highlighted text to see how
-        // IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
+        System.out.println("Hello and welcome!\n\n");
 
-        // Press Shift+F10 or click the green arrow button in the gutter to run the code.
-        for (int i = 1; i <= 5; i++) {
+        executarCadastroDuasTarefasListarPrimeiraTarefaEExcluir();
+    }
 
-            // Press Shift+F9 to start debugging your code. We have set one breakpoint
-            // for you, but you can always add more by pressing Ctrl+F8.
-            System.out.println("i = " + i);
+    public static void executarCadastroDuasTarefasListarPrimeiraTarefaEExcluir() {
+        ListaTarefa tarefas = new ListaTarefa();
+        Tarefa tarefa1 = tarefas.adicionarTarefa("- Ir ao mercado \n- Lavar louça \n- Estudar Java");
+        Tarefa tarefa2 = tarefas.adicionarTarefa("- Estudar Python e IA \n- Ir à academia");
+
+        System.out.println("Listando tarefa #" + tarefa1.getId());
+        Tarefa tarefaPorId = tarefas.listarTarefaPorId(tarefa1.getId()).get();
+        if (tarefaPorId != null) {
+            System.out.println("Tarefa #" + tarefaPorId.getId() + " listada com sucesso. \nDescrição: \n" + tarefaPorId.getDescricao());
+            System.out.println("\n\nExcluindo tarefa #" + tarefa1.getId());
+            tarefas.removerTarefaPorId(tarefaPorId.getId());
+            if(tarefas.listarTarefaPorId(tarefa1.getId()).isEmpty()) {
+                System.out.println("Tarefa #" + tarefa1.getId() + " excluída com sucesso.");
+            }
+        } else {
+            System.out.println("Tarefa inexistente.");
         }
+
+        
     }
 }
