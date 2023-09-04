@@ -25,9 +25,11 @@ public class LivroService {
      * Método para listar livros de um autor.
      * @param autor O autor do livro
      * */
-    public void listarPorAutor(String autor) {
+    public Collection<Livro> listarPorAutor(String autor) {
         System.out.println("\n----Listando livros pelo autor '" + autor + "'----");
-        catalogo.retornarLivrosPorAutor(autor).forEach(e -> System.out.println(e.toString()));
+        Collection<Livro> livros = catalogo.retornarLivrosPorAutor(autor);
+        livros.forEach(e -> System.out.println(e.toString()));
+        return livros;
     }
 
     /**
@@ -42,5 +44,29 @@ public class LivroService {
      * Método para listar todos os livros publicados em um ano específico.
      * */
     public void listarTodosPorAno(Integer ano) {
+        System.out.println("\n----Listando livros filtrando pelo ano de '" + "'----");
+        catalogo.retornarLivroPorAno(ano).forEach(e -> System.out.println(e.toString()));
+    }
+
+    /**
+     * Método para atualizar um livro.
+     * */
+    public void atualizarLivroPorId(String id, String titulo, String autor, String editora, LocalDate dataPublicacao) throws InterruptedException {
+        System.out.println("\n----Atualizando o livro #" + id + "----");
+        Thread.sleep(4000); //Apenas para ver o update da data e hora de atualização funcionando
+        Boolean ok = catalogo.atualizarLivroPorId(id, new Livro(id, titulo, autor, editora, dataPublicacao));
+        if (ok) {
+            System.out.println("Livro #" + id + " atualizado.");
+        } else {
+            System.out.println("Livro não atualizado.");
+        }
+    }
+
+    /**
+     * Método para listar um livro dado um ID.
+     * */
+    public void listarPorId(String livroId) {
+        System.out.println("\n----Listando livros filtrando pelo ID #" + livroId + "----");
+        System.out.println(catalogo.retornarLivroPorId(livroId).get().toString());
     }
 }

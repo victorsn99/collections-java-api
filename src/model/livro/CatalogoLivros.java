@@ -30,4 +30,23 @@ public class CatalogoLivros {
         Collections.sort(livros);
         return livros;
     }
+
+    public Boolean atualizarLivroPorId(String id, Livro novoLivro) {
+        Livro livro = this.retornarLivroPorId(id).get();
+        if (livro != null) {
+            novoLivro.setDataRegistro(livro.getDataRegistro());
+            int indice = livros.indexOf(livro);
+            livros.add(indice, novoLivro);
+            livros.remove(indice + 1);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public Collection<Livro> retornarLivroPorAno(Integer ano) {
+        return this.livros.stream()
+                .filter(livro -> ano.equals(livro.getDataPublicacao().getYear()))
+                .toList();
+    }
 }

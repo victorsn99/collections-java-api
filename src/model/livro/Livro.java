@@ -20,6 +20,15 @@ public class Livro implements Serializable, Comparable<Livro> {
 
     private LocalDateTime dataRegistro;
 
+    private LocalDateTime dataAtualizacao;
+
+    /**
+     * Construtor Para Insert
+     * @param titulo
+     * @param autor
+     * @param editora
+     * @param dataPublicacao
+     */
     public Livro(String titulo, String autor, String editora, LocalDate dataPublicacao) {
         this.id = UUID.randomUUID().toString();
         this.titulo = titulo;
@@ -27,6 +36,23 @@ public class Livro implements Serializable, Comparable<Livro> {
         this.editora = editora;
         this.dataPublicacao = dataPublicacao;
         this.dataRegistro = LocalDateTime.now();
+    }
+
+    /**
+     * Construtor Para Update
+     * @param id
+     * @param titulo
+     * @param autor
+     * @param editora
+     * @param dataPublicacao
+     */
+    public Livro(String id, String titulo, String autor, String editora, LocalDate dataPublicacao) {
+        this.id = id;
+        this.titulo = titulo;
+        this.autor = autor;
+        this.editora = editora;
+        this.dataPublicacao = dataPublicacao;
+        this.dataAtualizacao = LocalDateTime.now();
     }
 
     public String getId() {
@@ -73,8 +99,24 @@ public class Livro implements Serializable, Comparable<Livro> {
         return dataRegistro;
     }
 
+    public void setDataRegistro(LocalDateTime dataRegistro) {
+        this.dataRegistro = dataRegistro;
+    }
+
     public String getDataRegistroFormatado() {
         return dataRegistro.format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss"));
+    }
+
+    public LocalDateTime getDataAtualizacao() {
+        return dataAtualizacao;
+    }
+
+    public String getDataAtualizacaoFormatado() {
+        return (dataAtualizacao == null ? null : dataAtualizacao.format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss")));
+    }
+
+    public void setDataAtualizacao(LocalDateTime dataAtualizacao) {
+        this.dataAtualizacao = dataAtualizacao;
     }
 
     @Override
@@ -84,7 +126,8 @@ public class Livro implements Serializable, Comparable<Livro> {
                 "Autor: " + autor + "\n" +
                 "Editora: " + editora + "\n" +
                 "Publicado em: " + this.getDataPublicacaoFormatado() + "\n" +
-                "Cadastrado no Sistema em " + this.getDataRegistroFormatado();
+                "Cadastrado no Sistema em " + this.getDataRegistroFormatado() + "\n" +
+                "Atualizado no Sistema em " + (this.getDataAtualizacaoFormatado() == null ? "N/A" : this.getDataAtualizacaoFormatado());
     }
 
     @Override
