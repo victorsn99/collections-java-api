@@ -1,6 +1,6 @@
 package service;
 
-import model.livro.CatalogoLivros;
+import repository.LivroRepository;
 import model.livro.Livro;
 
 import java.time.LocalDate;
@@ -8,7 +8,7 @@ import java.util.Collection;
 
 public class LivroService {
 
-    CatalogoLivros catalogo = new CatalogoLivros();
+    LivroRepository catalogo = new LivroRepository();
 
     /**
     * Método para cadastrar um livro.

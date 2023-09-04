@@ -1,18 +1,20 @@
-package model.tarefa;
+package repository;
+
+import model.tarefa.Tarefa;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class ListaTarefa {
+public class TarefaRepository {
 
     private List<Tarefa> tarefas;
 
-    public ListaTarefa(List<Tarefa> tarefas) {
+    public TarefaRepository(List<Tarefa> tarefas) {
         this.tarefas = tarefas;
     }
 
-    public ListaTarefa() {
+    public TarefaRepository() {
         this.tarefas = new ArrayList<>();
     }
 

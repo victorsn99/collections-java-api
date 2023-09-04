@@ -1,12 +1,14 @@
-package model.livro;
+package repository;
+
+import model.livro.Livro;
 
 import java.util.*;
 
-public class CatalogoLivros {
+public class LivroRepository {
 
     private List<Livro> livros;
 
-    public CatalogoLivros() {
+    public LivroRepository() {
         this.livros = new ArrayList<>();
     }
 

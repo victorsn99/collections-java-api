@@ -1,12 +1,12 @@
 package service;
 
-import model.tarefa.ListaTarefa;
+import repository.TarefaRepository;
 import model.tarefa.Tarefa;
 
 public class TarefaService {
 
     public void executarCadastroDuasTarefasListarPrimeiraTarefaEExcluir() {
-        ListaTarefa tarefas = new ListaTarefa();
+        TarefaRepository tarefas = new TarefaRepository();
         Tarefa tarefa1 = tarefas.adicionarTarefa("- Ir ao mercado \n- Lavar louça \n- Estudar Java");
         Tarefa tarefa2 = tarefas.adicionarTarefa("- Estudar Python e IA \n- Ir à academia");
 
