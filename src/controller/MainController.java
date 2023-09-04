@@ -1,6 +1,7 @@
 package controller;
 
 import model.livro.Livro;
+import service.ConvidadoService;
 import service.LivroService;
 import service.TarefaService;
 
@@ -13,9 +14,12 @@ public class MainController {
 
     private final TarefaService tarefaService;
 
+    private final ConvidadoService convidadoService;
+
     public MainController() {
         livroService = new LivroService();
         tarefaService = new TarefaService();
+        convidadoService = new ConvidadoService();
     }
 
     public void executarMetodosLivros() throws InterruptedException {
@@ -41,5 +45,20 @@ public class MainController {
 
     public void executarMetodosTarefas() {
         tarefaService.executarCadastroDuasTarefasListarPrimeiraTarefaEExcluir();
+    }
+
+    public void executarMetodosConvidados() {
+        convidadoService.adicionarConvidado("João Victor", 1234);
+        convidadoService.adicionarConvidado("Joana Souza", 1234); //Vai retornar erro em sysout pois já existe convidado com o código
+        convidadoService.adicionarConvidado("Manuel Pereira", 9554);
+        convidadoService.adicionarConvidado("Emanuela Medeiros", 8966);
+        convidadoService.adicionarConvidado("Ana Caroline Campos", 2987);
+
+        convidadoService.contarConvidados();
+
+        convidadoService.exibirConvidados();
+
+        convidadoService.removerConvidado(9554);
+        convidadoService.exibirConvidados();
     }
 }

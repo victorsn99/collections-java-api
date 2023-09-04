@@ -16,13 +16,7 @@ public class ConvidadoRepository implements IConvidadoRepository {
 
     @Override
     public void adicionarConvidado(String nome, Integer codigoConvite) {
-        this.convidados.stream()
-                .filter(c -> c.getCodigoConvite().equals(codigoConvite))
-                .findFirst().ifPresentOrElse(e -> {
-                    System.out.println("Não é possível cadastrar pois já existe um convidado com código de convite '" + codigoConvite + "'");
-                }, () -> {
-                    convidados.add(new Convidado(nome, codigoConvite));
-                });
+        convidados.add(new Convidado(nome, codigoConvite));
     }
 
     @Override
