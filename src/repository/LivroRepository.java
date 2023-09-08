@@ -34,16 +34,15 @@ public class LivroRepository {
     }
 
     public Boolean atualizarLivroPorId(String id, Livro novoLivro) {
-        Livro livro = this.retornarLivroPorId(id).get();
-        if (livro != null) {
-            novoLivro.setDataRegistro(livro.getDataRegistro());
-            int indice = livros.indexOf(livro);
+        Boolean[] atualizado = {false};
+        this.retornarLivroPorId(id).ifPresent(l -> {
+            novoLivro.setDataRegistro(l.getDataRegistro());
+            int indice = livros.indexOf(l);
             livros.add(indice, novoLivro);
             livros.remove(indice + 1);
-            return true;
-        } else {
-            return false;
-        }
+            atualizado[0] = true;
+        });
+        return atualizado[0];
     }
 
     public Collection<Livro> retornarLivroPorAno(Integer ano) {
