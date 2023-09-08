@@ -1,10 +1,5 @@
 import controller.MainController;
-import model.livro.Livro;
-import service.LivroService;
-import service.TarefaService;
 
-import java.time.LocalDate;
-import java.util.Collection;
 import java.util.Scanner;
 
 public class Main {
@@ -18,7 +13,9 @@ public class Main {
 
             for (int i = 0; i == i; i++) {
                 if (continuar) {
-                    System.out.println("---------------------------------\nEscolha uma operação:\n\n1 - Executar Métodos da Tarefa\n2 - Executar Métodos de Livros\n3 - Executar Métodos de Convidados\n" +
+                    System.out.println("---------------------------------\nEscolha uma operação:\n\n1 - Executar Métodos da Tarefa\n2 - " +
+                            "Executar Métodos de Livros\n3 - Executar Métodos de Convidados\n4 - Executar Métodos de Exemplos para Consumer\n" +
+                            "5 - Executar Métodos Saudação\n" +
                             "0 - Sair\n");
 
                     int opcao = sc.nextInt();
@@ -35,6 +32,12 @@ public class Main {
                             break;
                         case 3:
                             controller.executarMetodosConvidados();
+                            break;
+                        case 4:
+                            controller.executarMetodoListarDivisores();
+                            break;
+                        case 5:
+                            controller.executarMetodoSaudacao();
                             break;
                     }
                 } else {

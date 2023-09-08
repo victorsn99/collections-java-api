@@ -3,10 +3,15 @@ package controller;
 import model.livro.Livro;
 import service.ConvidadoService;
 import service.LivroService;
+import service.StreamApiService;
 import service.TarefaService;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
+import java.util.Scanner;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public class MainController {
 
@@ -16,10 +21,13 @@ public class MainController {
 
     private final ConvidadoService convidadoService;
 
+    private final StreamApiService streamApiService;
+
     public MainController() {
         livroService = new LivroService();
         tarefaService = new TarefaService();
         convidadoService = new ConvidadoService();
+        streamApiService = new StreamApiService();
     }
 
     public void executarMetodosLivros() throws InterruptedException {
@@ -60,5 +68,22 @@ public class MainController {
 
         convidadoService.removerConvidado(9554);
         convidadoService.exibirConvidados();
+    }
+
+    public void executarMetodoListarDivisores() {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("Digite um número para ser o divisor: ");
+        Integer divisor = sc.nextInt();
+
+        System.out.println("Digite vários números separados por vírgula: ");
+        String numeros = sc.next();
+        List<Integer> numerosDigitados = new ArrayList<>();
+        new CopyOnWriteArrayList<>(numeros.split(",")).forEach(e -> numerosDigitados.add(Integer.parseInt(e)));
+        streamApiService.listarDivisores(numerosDigitados, divisor);
+    }
+
+    public void executarMetodoSaudacao() {
+        streamApiService.listarSaudacoes();
     }
 }
